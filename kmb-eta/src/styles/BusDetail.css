@@ -19,6 +19,7 @@
     position: absolute;
     top: 2%;
     left: 3%;
+    cursor: pointer;
 }
 
 .map-container {
