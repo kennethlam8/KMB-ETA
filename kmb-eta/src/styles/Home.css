@@ -21,8 +21,6 @@
     background-size: contain;
 }
 
-.bus-list-container {}
-
 .bus-list {
     display: flex;
     justify-content: space-between;
