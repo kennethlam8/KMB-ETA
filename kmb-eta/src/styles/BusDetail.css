@@ -10,9 +10,24 @@
     height: 70vh;
     margin-top: 5rem;
     overflow: auto;
+    position: relative;
+}
+
+.previous-icon {
+    font-size: 1.5rem;
+    color: #fff;
+    position: absolute;
+    top: 2%;
+    left: 3%;
 }
 
 .map-container {
-    border: 1px black solid;
+    border-bottom: 5px #ED1F28 solid;
     height: 40vh;
+}
+
+.location {
+    padding: 1rem;
+    font-weight: bold;
+    color: #121212;
 }
