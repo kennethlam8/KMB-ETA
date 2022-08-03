@@ -5,9 +5,56 @@
 }
 
 .layout-container {
-    border: 1px black solid;
+    border: 2px #dddddd solid;
     width: 22rem;
     height: 70vh;
     margin-top: 5rem;
     overflow: auto;
+}
+
+.banner {
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+}
+
+.bus-list-container {}
+
+.bus-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+    border-bottom: 0.5px #dddddd solid;
+}
+
+.bus-number {
+    padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.destination {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-left: 0.2rem;
+}
+
+.waiting-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px
+}
+
+.waiting-time-number {
+    font-size: 1.5rem;
+    color: #1E71BA;
+}
+
+.waiting-time-minute {
+    font-size: 0.1rem;
 }
