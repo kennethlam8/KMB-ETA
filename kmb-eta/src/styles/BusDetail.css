@@ -1,0 +1,18 @@
+.bg-config {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layout-container {
+    border: 2px #dddddd solid;
+    width: 22rem;
+    height: 70vh;
+    margin-top: 5rem;
+    overflow: auto;
+}
+
+.map-container {
+    border: 1px black solid;
+    height: 40vh;
+}
