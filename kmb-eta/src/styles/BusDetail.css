@@ -1,15 +1,14 @@
-.bg-config {
+.bus-bg-config {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.layout-container {
+.bus-layout-container {
     border: 2px #dddddd solid;
     width: 22rem;
     height: 70vh;
     margin-top: 5rem;
-    overflow: auto;
     position: relative;
 }
 
