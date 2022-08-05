@@ -3,8 +3,8 @@ import '../styles/BusDetail.css'
 import Header from '../components/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-
 import { useParams, useNavigate } from 'react-router-dom'
+import Map from './Map'
 
 function BusDetail() {
 
@@ -22,6 +22,7 @@ function BusDetail() {
                 <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
                 <div>
                     <div className='map-container'>
+                        <Map />
 
                     </div>
                     <div className='location'>荃景圍天橋</div>
