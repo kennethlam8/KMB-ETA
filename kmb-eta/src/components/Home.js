@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
 import '../styles/Home.css'
 import Header from './Header';
 import banner from '../assets/image/kmb-banner.jpg'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapPin, faListUl } from '@fortawesome/free-solid-svg-icons'
 
 
 function Home() {
@@ -13,7 +15,6 @@ function Home() {
 
     useEffect(() => {
         getTsuenKingRouteData()
-        // console.log('new date :', new Date)
         getTsuenKingData()
     }, [])
 
@@ -43,7 +44,19 @@ function Home() {
                     <div className='banner'>
                         <img src={banner} alt={'KMB banner'} width='100%' />
                     </div>
+                    <div className='current-location-container'>
+                        <div className='current-location'>
+                            <FontAwesomeIcon icon={faMapPin} className='current-location-icon' />
+                            {tsuenKingData}
+
+                        </div>
+                        <div>
+                            <FontAwesomeIcon icon={faListUl} className='select-location-icon' />
+                        </div>
+                    </div>
                 </div>
+
+
 
                 <div className='bus-list-container'>
 
@@ -82,9 +95,6 @@ function Home() {
                         })
 
                     }
-
-
-
 
                 </div>
             </div>
