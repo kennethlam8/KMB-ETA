@@ -22,7 +22,7 @@ function Home() {
         const data = await res.json()
         const tkData = Object.values(data)[3]
         setTsuenKingRouteData(tkData)
-        // console.log('fetch data : ', tkData)
+        console.log('fetch data : ', tkData)
 
     }
 
@@ -41,7 +41,7 @@ function Home() {
                 <div className='header-banner-div'>
                     <Header />
                     <div className='banner'>
-                        <img src={banner} width='100%' />
+                        <img src={banner} alt={'KMB banner'} width='100%' />
                     </div>
                 </div>
 
@@ -50,10 +50,11 @@ function Home() {
                     {tsuenKingRouteData &&
 
                         tsuenKingRouteData.map((busInfo, index) => {
+
                             if (busInfo.eta_seq <= 2) {
                                 return (
                                     <div key={index}>
-                                        <Link to="/bus-detail" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/bus-detail/${index}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <div className='bus-list'>
                                                 <div className='bus-number'>{busInfo.route}</div>
                                                 <div style={{ flex: 1 }}>
