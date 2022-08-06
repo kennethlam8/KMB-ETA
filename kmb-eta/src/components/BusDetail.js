@@ -6,11 +6,11 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
 import Map from './Map'
 
-function BusDetail() {
+function BusDetail(props) {
 
     const navigate = useNavigate();
     let params = useParams()
-    let [tsuenKingRouteDetail, setTsuenKingRouteDetail] = useState(null)
+    const [tsuenKingRouteDetail, setTsuenKingRouteDetail] = useState()
 
     console.log('params .id :', params.id)
 
@@ -21,7 +21,7 @@ function BusDetail() {
     }, [])
 
 
-    const getTsuenKingRouteData = async (event) => {
+    const getTsuenKingRouteData = async () => {
         const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/BFA3460955AC820C")
         const data = await res.json()
         const tkData = Object.values(data)[3]
@@ -36,15 +36,26 @@ function BusDetail() {
     return (
         <div className='bus-bg-config'>
             <div className='bus-layout-container'>
-                <Header />
-                <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
-                <div>
-                    <div className='map-container'>
-                        <Map />
+                {tsuenKingRouteDetail &&
+                    <div>
+                        <div className='detail-header-container'>
+                            <div className='detail-header-content'>
+                                {tsuenKingRouteDetail.route} 往 {tsuenKingRouteDetail.dest_tc}
+                            </div>
+
+                        </div>
+                        <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
+                        <div>
+                            <div className='map-container'>
+                                <Map />
+
+                            </div>
+                            <div className='location'>荃景圍天橋</div>
+                        </div>
 
                     </div>
-                    <div className='location'>荃景圍天橋</div>
-                </div>
+
+                }
 
             </div>
         </div>

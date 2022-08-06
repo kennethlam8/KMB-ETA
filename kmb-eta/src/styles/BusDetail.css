@@ -12,11 +12,23 @@
     position: relative;
 }
 
+.detail-header-container {
+    height: 5vh;
+    background-color: #ED1F28;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-header-content {
+    color: #ffffff;
+}
+
 .previous-icon {
     font-size: 1.5rem;
     color: #fff;
     position: absolute;
-    top: 2%;
+    top: 1.6%;
     left: 3%;
     cursor: pointer;
 }
