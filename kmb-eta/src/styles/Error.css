@@ -1,0 +1,45 @@
+.bus-bg-config {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bus-layout-container {
+    border: 2px #dddddd solid;
+    width: 22rem;
+    height: 70vh;
+    margin-top: 5rem;
+
+}
+
+.error-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-header {
+    width: 22rem;
+    height: 3rem;
+    background-color: #ED1F28;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.redirect-btn {
+    background-color: #ED1F28;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 5rem;
+}
+
+.redirect-home {
+    text-decoration: none;
+    /* color: inherit; */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff
+}
