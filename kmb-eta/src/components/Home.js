@@ -71,7 +71,7 @@ const Home = () => {
     const LoadingImage = () => {
         return (
             <div className='loading-image-container'>
-                <img src={loadingIcon} className='loading-image' />
+                <img src={loadingIcon} alt="loading" className='loading-image' />
             </div>
         )
     }
@@ -144,7 +144,7 @@ const Home = () => {
                                                     </div>
                                                     <div className='waiting-time'>
                                                         <div className='waiting-time-number'>
-                                                            {moment(busInfo.eta).fromNow() == 'Invalid date'
+                                                            {moment(busInfo.eta).fromNow() === 'Invalid date'
                                                                 // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
                                                                 // || moment(busInfo.eta).fromNow() == 'a minute ago'
                                                                 // || moment(busInfo.eta).fromNow() == 'in a few seconds'
@@ -175,7 +175,7 @@ const Home = () => {
                                                     </div>
                                                     <div className='waiting-time'>
                                                         <div className='waiting-time-number'>
-                                                            {moment(busInfo.eta).fromNow() == 'Invalid date'
+                                                            {moment(busInfo.eta).fromNow() === 'Invalid date'
                                                                 // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
                                                                 // || moment(busInfo.eta).fromNow() == 'a minute ago'
                                                                 // || moment(busInfo.eta).fromNow() == 'in a few seconds'
