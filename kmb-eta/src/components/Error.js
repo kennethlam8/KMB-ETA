@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/Error.css'
-import kmbicon from '../assets/image/kmb-favicon.png'
+import kmbIcon from '../assets/image/kmb-favicon.png'
 
 function Error() {
     return (
@@ -15,7 +15,7 @@ function Error() {
                         <div className='redirect-btn'>
                             <a href={'/'} className="redirect-home">Redirect to home</a>
                         </div>
-                        <img src={kmbicon} style={{ marginTop: '2rem' }} />
+                        <img src={kmbIcon} alt='KMB Image' style={{ marginTop: '2rem' }} />
                     </div>
 
                 </div>
