@@ -1,4 +1,5 @@
 import Home from './components/Home';
+import Error from './components/Error';
 import './styles/App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import BusDetail from './components/BusDetail';
@@ -16,7 +17,7 @@ function App() {
         <Route path="/cwk-bus-detail" element={<CwkBusDetail />} >
           <Route path=":id" element={<CwkBusDetail />} />
         </Route>
-
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
 
