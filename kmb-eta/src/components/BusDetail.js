@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react'
 import '../styles/BusDetail.css'
-import Header from '../components/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
 import Map from './Map'
 
-function BusDetail(props) {
+const BusDetail = () => {
 
     const navigate = useNavigate();
     let params = useParams()
     const [tsuenKingRouteDetail, setTsuenKingRouteDetail] = useState()
+    const [tsuenKingData, setTsuenKingData] = useState()
+    const [mapMarker, setMapMarker] = useState(false)
 
-    console.log('params .id :', params.id)
+    console.log('TK Data :', tsuenKingData)
+
+    // console.log('params .id :', params.id)
 
 
     useEffect(() => {
         getTsuenKingRouteData()
-        // getTsuenKingData()
+        getTsuenKingData()
     }, [])
 
 
@@ -31,12 +34,20 @@ function BusDetail(props) {
 
     }
 
+    const getTsuenKingData = async () => {
+        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/BFA3460955AC820C")
+        const data = await res.json()
+        const tkDataName = data.data
+        setTsuenKingData(tkDataName)
+        console.log('fetch TsuenKingData : ', tkDataName)
+    }
+
 
 
     return (
         <div className='bus-bg-config'>
             <div className='bus-layout-container'>
-                {tsuenKingRouteDetail &&
+                {tsuenKingRouteDetail && tsuenKingData &&
                     <div>
                         <div className='detail-header-container'>
                             <div className='detail-header-content'>
@@ -47,10 +58,10 @@ function BusDetail(props) {
                         <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
                         <div>
                             <div className='map-container'>
-                                <Map />
+                                <Map isCwkMarker={false} tkLatLng={{ lat: Number(tsuenKingData.lat), lng: Number(tsuenKingData.long) }} />
 
                             </div>
-                            <div className='location'>荃景圍天橋</div>
+                            <div className='location'>{tsuenKingData.name_tc}</div>
                         </div>
 
                     </div>
