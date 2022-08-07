@@ -8,7 +8,7 @@ const Map = ({ isCwkMarker, tkLatLng, cwkLatLng }) => {
     // const center = useMemo(() => ({ lat: 22.375396, lng: 114.108571 }), []);
 
 
-    const center = () => isCwkMarker == false ? tkLatLng : cwkLatLng
+    const center = () => isCwkMarker === false ? tkLatLng : cwkLatLng
 
     const [zoom, setZoom] = useState(18);
 
@@ -20,7 +20,7 @@ const Map = ({ isCwkMarker, tkLatLng, cwkLatLng }) => {
         return (
 
             <div className='loading-image-container'>
-                <img src={loadingIcon} className='loading-image' />
+                <img src={loadingIcon} alt="loading" className='loading-image' />
             </div>
         )
     }
