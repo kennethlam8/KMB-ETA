@@ -82,9 +82,9 @@ const Home = () => {
             <div className='layout-container'>
                 <div className='header-banner-div'>
                     <Header />
-                    <div className='banner'>
+                    <a href='https://www.kmb.hk/tc/news/publications_corps.html' className='banner'>
                         <img src={banner} alt={'KMB banner'} width='100%' />
-                    </div>
+                    </a>
                     <div className='current-location-container'>
                         <div className='current-location'>
                             <FontAwesomeIcon icon={faMapPin} className='current-location-icon' />
