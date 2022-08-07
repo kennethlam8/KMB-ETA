@@ -1,6 +1,7 @@
 import '../styles/Home.css'
 import Header from './Header';
 import banner from '../assets/image/kmb-banner.jpg'
+import loadingIcon from '../assets/icon/loading.png'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +9,7 @@ import { faMapPin, faListUl } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment';
 
 
-function Home() {
+const Home = () => {
 
     const [routeData, setRouteData] = useState()
     const [tsuenKingData, setTsuenKingData] = useState()
@@ -16,6 +17,7 @@ function Home() {
 
     const [chaiWanKokRouteData, setChaiWanKokRouteData] = useState(false)
     const [dropdown, setDropdown] = useState(false)
+
 
     useEffect(() => {
 
@@ -29,6 +31,7 @@ function Home() {
         getTsuenKingData()
         getChaiWanKokData()
         console.log('aaaaaaaaaaaaaaaaa')
+
     }, [chaiWanKokRouteData])
 
 
@@ -45,7 +48,7 @@ function Home() {
         const data = await res.json()
         const tkDataName = data.data.name_tc
         setTsuenKingData(tkDataName)
-        // console.log('fetch TsuenKingData : ', data.data)
+        console.log('fetch TsuenKingData : ', data.data)
     }
 
     const getChaiWanKokRouteData = async () => {
@@ -64,6 +67,14 @@ function Home() {
         // console.log('fetch TsuenKingData : ', data.data)
     }
 
+
+    const LoadingImage = () => {
+        return (
+            <div className='loading-image-container'>
+                <img src={loadingIcon} className='loading-image' />
+            </div>
+        )
+    }
 
 
     return (
@@ -111,7 +122,7 @@ function Home() {
 
                 <div className='bus-list-container'>
 
-                    {routeData &&
+                    {routeData ?
 
                         routeData.map((busInfo, index) => {
 
@@ -188,7 +199,8 @@ function Home() {
                             }
 
                         })
-
+                        :
+                        <LoadingImage />
                     }
 
                 </div>
