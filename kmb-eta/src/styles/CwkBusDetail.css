@@ -43,3 +43,27 @@
     font-weight: bold;
     color: #121212;
 }
+
+.eta-container {
+    margin-left: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.3rem;
+}
+
+.eta-time {
+    font-size: 1.2rem;
+    color: #1E71BA;
+    width: 1.5rem;
+}
+
+.eta-min {
+    font-size: 0.1rem;
+}
+
+.eta-rmk {
+    font-size: 1rem;
+    margin-left: 0.2rem;
+    color: #888888
+}

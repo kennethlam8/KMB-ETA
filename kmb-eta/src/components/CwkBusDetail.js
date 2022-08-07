@@ -4,21 +4,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
 import Map from './Map'
+import moment from 'moment';
+
 
 const CwkBusDetail = () => {
     const navigate = useNavigate();
     let params = useParams()
-    const [chaiWanKokRouteDetail, setChaiWanKokRouteDetail] = useState()
+
+    const [chaiWanKokEta, setChaiWanKokEta] = useState()
+    const [chaiWanKokRouteDetailById, setChaiWanKokRouteDetailById] = useState()
     const [chaiWanKokData, setChaiWanKokData] = useState()
-
-
-    console.log('params .id :', params.id)
-
 
     useEffect(() => {
         getChaiWanKokRouteData()
         getChaiWanKokData()
+
     }, [])
+
+
+    useEffect(() => {
+        getChaiWanKokEta()
+    }, [chaiWanKokRouteDetailById])
+
 
 
     const getChaiWanKokRouteData = async () => {
@@ -26,7 +33,7 @@ const CwkBusDetail = () => {
         const data = await res.json()
         const cwkData = Object.values(data)[3]
         const tkRouteData = cwkData[params.id]
-        setChaiWanKokRouteDetail(tkRouteData)
+        setChaiWanKokRouteDetailById(tkRouteData)
         console.log('fetch data : ', tkRouteData)
     }
 
@@ -40,16 +47,27 @@ const CwkBusDetail = () => {
     }
 
 
+    const getChaiWanKokEta = async () => {
+        const res = await fetch(`https://data.etabus.gov.hk/v1/transport/kmb/eta/5FB1FCAF80F3D97D/${chaiWanKokRouteDetailById.route}/${chaiWanKokRouteDetailById.service_type}`)
+        const data = await res.json()
+        const tkData = Object.values(data)[3]
+        setChaiWanKokEta(tkData)
+        console.log('fetch tkEtaData (ETA) : ', tkData)
+    }
+
+
+
+
 
 
     return (
         <div className='bus-bg-config'>
             <div className='bus-layout-container'>
-                {chaiWanKokRouteDetail && chaiWanKokData &&
+                {chaiWanKokRouteDetailById && chaiWanKokData && chaiWanKokEta &&
                     <div>
                         <div className='detail-header-container'>
                             <div className='detail-header-content'>
-                                {chaiWanKokRouteDetail.route} 往 {chaiWanKokRouteDetail.dest_tc}
+                                {chaiWanKokRouteDetailById.route} 往 {chaiWanKokRouteDetailById.dest_tc}
                             </div>
 
                         </div>
@@ -59,7 +77,29 @@ const CwkBusDetail = () => {
                                 <Map isCwkMarker={true} cwkLatLng={{ lat: Number(chaiWanKokData.lat), lng: Number(chaiWanKokData.long) }} />
 
                             </div>
-                            <div className='location'>{chaiWanKokData.name_tc}</div>
+                            <div>
+                                <div className='location'>{chaiWanKokData.name_tc}</div>
+                                {chaiWanKokEta.map((routeData, index) => {
+                                    if (routeData.route === chaiWanKokRouteDetailById.route) {
+                                        return (
+                                            <div key={index} className="eta-container">
+                                                <div className="eta-time">
+                                                    {moment(routeData.eta).fromNow() == 'Invalid date'
+                                                        || moment(routeData.eta).fromNow().includes('ago')
+                                                        || moment(routeData.eta).fromNow().includes('few')
+                                                        || moment(routeData.eta).fromNow().includes('a')
+                                                        ? '-'
+                                                        : moment(routeData.eta).fromNow().substring(3, 5)
+                                                    }
+                                                </div>
+                                                <div className='eta-min'>分鐘<span className='eta-rmk'>{routeData.rmk_tc}</span></div>
+
+                                            </div>
+                                        )
+                                    }
+                                })}
+                            </div>
+
                         </div>
 
                     </div>
