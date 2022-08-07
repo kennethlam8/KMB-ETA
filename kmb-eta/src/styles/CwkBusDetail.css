@@ -1,0 +1,45 @@
+.bus-bg-config {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bus-layout-container {
+    border: 2px #dddddd solid;
+    width: 22rem;
+    height: 70vh;
+    margin-top: 5rem;
+    position: relative;
+}
+
+.detail-header-container {
+    height: 5vh;
+    background-color: #ED1F28;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-header-content {
+    color: #ffffff;
+}
+
+.previous-icon {
+    font-size: 1.5rem;
+    color: #fff;
+    position: absolute;
+    top: 1.6%;
+    left: 3%;
+    cursor: pointer;
+}
+
+.map-container {
+    border-bottom: 5px #ED1F28 solid;
+    height: 40vh;
+}
+
+.location {
+    padding: 1rem;
+    font-weight: bold;
+    color: #121212;
+}
