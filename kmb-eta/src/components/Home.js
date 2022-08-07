@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapPin, faListUl } from '@fortawesome/free-solid-svg-icons'
+import kmbIcon from '../assets/image/kmb-favicon.png'
 import moment from 'moment';
 
 
@@ -110,6 +111,7 @@ const Home = () => {
                                                 {chaiWanKokData}
                                             </div>
                                         </div>
+                                        <img src={kmbIcon} alt='KMB Image' className='kmb-icon' />
                                     </div>
                                 </div>
 

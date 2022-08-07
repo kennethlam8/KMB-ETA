@@ -171,6 +171,13 @@
     border-radius: 10px;
 }
 
+.kmb-icon {
+    width: 3rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
 .bus-list {
     display: flex;
     justify-content: space-between;
