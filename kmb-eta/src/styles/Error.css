@@ -34,11 +34,17 @@
     padding: 1rem;
     border-radius: 10px;
     margin-top: 5rem;
+    text-decoration: none;
+    color: inherit;
 }
 
+.redirect-btn:hover {
+    background-color: #ED1F28aa;
+    transform: scale(1.1);
+}
+
+
 .redirect-home {
-    text-decoration: none;
-    /* color: inherit; */
     font-size: 1.5rem;
     font-weight: bold;
     color: #ffffff

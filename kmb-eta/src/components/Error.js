@@ -12,9 +12,9 @@ function Error() {
                             <p style={{ fontWeight: 'bold', color: '#fff' }}>Page Not Found</p>
 
                         </div>
-                        <div className='redirect-btn'>
-                            <a href={'/'} className="redirect-home">Redirect to home</a>
-                        </div>
+                        <a href={'/'} className='redirect-btn'>
+                            <a className="redirect-home">Back to home</a>
+                        </a>
                         <img src={kmbIcon} alt='KMB Image' style={{ marginTop: '2rem' }} />
                     </div>
 
