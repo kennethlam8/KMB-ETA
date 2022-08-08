@@ -206,6 +206,12 @@
     margin-right: 10px
 }
 
+.waiting-time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .waiting-time-number {
     font-size: 1.5rem;
     color: #1E71BA;
@@ -213,4 +219,21 @@
 
 .waiting-time-minute {
     font-size: 0.1rem;
+}
+
+.caution-container {
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 2px #1E71BA solid;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caution {
+    color: #1E71BA;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 5px;
 }

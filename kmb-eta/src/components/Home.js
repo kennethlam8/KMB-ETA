@@ -77,6 +77,32 @@ const Home = () => {
         )
     }
 
+    const busEtaFormat = (busEta) => {
+        if (moment(busEta).fromNow() === 'Invalid date') {
+            return (
+                <div className='caution-container'>
+                    <span className='caution'>!</span>
+                </div>
+            )
+        } else if (moment(busEta).fromNow().includes('ago') || moment(busEta).fromNow().includes('few') || moment(busEta).fromNow().includes('a')) {
+            return (
+                <div className='waiting-time-container'>
+                    <div className='waiting-time-number'>-</div>
+                    <div className='waiting-time-minute'>分鐘</div>
+                </div>
+            )
+        }
+        return (
+            <div className='waiting-time-container'>
+                <div className='waiting-time-number'>{moment(busEta).fromNow().substring(3, 5)}</div>
+                <div className='waiting-time-minute'>分鐘</div>
+            </div>
+
+
+        )
+
+    }
+
 
     return (
         <div className='bg-config'>
@@ -145,7 +171,7 @@ const Home = () => {
 
                                                     </div>
                                                     <div className='waiting-time'>
-                                                        <div className='waiting-time-number'>
+                                                        {/* <div className='waiting-time-number'>
                                                             {moment(busInfo.eta).fromNow() === 'Invalid date'
                                                                 // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
                                                                 // || moment(busInfo.eta).fromNow() == 'a minute ago'
@@ -158,7 +184,8 @@ const Home = () => {
                                                                 : moment(busInfo.eta).fromNow().substring(3, 5)
                                                             }
                                                         </div>
-                                                        <div className='waiting-time-minute'>分鐘</div>
+                                                        <div className='waiting-time-minute'>分鐘</div> */}
+                                                        {busEtaFormat(busInfo.eta)}
                                                     </div>
                                                 </div>
                                             </Link>
@@ -176,8 +203,7 @@ const Home = () => {
 
                                                     </div>
                                                     <div className='waiting-time'>
-                                                        <div className='waiting-time-number'>
-                                                            {moment(busInfo.eta).fromNow() === 'Invalid date'
+                                                        {/* {moment(busInfo.eta).fromNow() === 'Invalid date'
                                                                 // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
                                                                 // || moment(busInfo.eta).fromNow() == 'a minute ago'
                                                                 // || moment(busInfo.eta).fromNow() == 'in a few seconds'
@@ -187,9 +213,11 @@ const Home = () => {
                                                                 || moment(busInfo.eta).fromNow().includes('a')
                                                                 ? '-'
                                                                 : moment(busInfo.eta).fromNow().substring(3, 5)
-                                                            }
-                                                        </div>
-                                                        <div className='waiting-time-minute'>分鐘</div>
+                                                            } */}
+
+                                                        {busEtaFormat(busInfo.eta)}
+
+                                                        {/* <div className='waiting-time-minute'>分鐘</div> */}
                                                     </div>
                                                 </div>
                                             </Link>
