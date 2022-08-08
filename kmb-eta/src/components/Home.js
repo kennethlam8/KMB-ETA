@@ -39,19 +39,6 @@ const Home = () => {
     }, [chaiWanKokRouteData])
 
 
-    useEffect(() => {
-
-        if (chaiWanKokRouteData) {
-            getChaiWanKokRouteData()
-            return
-        }
-
-        getTsuenKingRouteData()
-
-    }, [refresh])
-
-
-
     const getTsuenKingRouteData = async () => {
         const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/BFA3460955AC820C")
         const data = await res.json()
@@ -121,6 +108,10 @@ const Home = () => {
             setTimeout(() => {
                 res(chaiWanKokRouteData ? getChaiWanKokRouteData() : getTsuenKingRouteData())
             }, 1000)
+            setRefresh(true)
+            setTimeout(() => {
+                setRefresh(false)
+            }, 1000)
         })
     }
 
@@ -163,7 +154,6 @@ const Home = () => {
                                                 {chaiWanKokData}
                                             </div>
                                         </div>
-                                        <img src={kmbIcon} alt='KMB Image' className='kmb-icon' />
                                     </div>
                                 </div>
 
@@ -173,6 +163,14 @@ const Home = () => {
                 </div>
 
 
+                <div className='pulldown-msg-container'>
+                    {refresh
+                        ? <div className='pulldown-msg'>更新中...</div>
+                        : <div className='pulldown-msg'>下拉以更新</div>
+                    }
+
+
+                </div>
 
                 <div className='bus-list-container'>
                     <PullToRefresh onRefresh={handlePullDownRefresh} refreshingContent={<Oval stroke={"#ED1F28"} height={"30px"} />} >
