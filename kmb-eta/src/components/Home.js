@@ -105,7 +105,7 @@ const Home = () => {
 
 
     return (
-        <div className='bg-config'>
+        <div>
             <div className='layout-container'>
                 <div className='header-banner-div'>
                     <div className='header-container'>
