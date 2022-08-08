@@ -1,17 +1,3 @@
-.bus-bg-config {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bus-layout-container {
-    border: 2px #dddddd solid;
-    width: 22rem;
-    height: 70vh;
-    margin-top: 5rem;
-
-}
-
 .error-msg {
     display: flex;
     flex-direction: column;
@@ -20,7 +6,7 @@
 }
 
 .error-header {
-    width: 22rem;
+    width: 100%;
     height: 3rem;
     background-color: #ED1F28;
     display: flex;
@@ -36,6 +22,10 @@
     margin-top: 5rem;
     text-decoration: none;
     color: inherit;
+    width: 8.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .redirect-btn:hover {

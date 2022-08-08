@@ -42,6 +42,12 @@ function Contact() {
                     </div>
 
                 </div>
+
+                <div>
+                    <a href={'/'} className='contact-redirect-btn'>
+                        <a className="contact-redirect-home">返回主頁</a>
+                    </a>
+                </div>
             </div>
         </div>
     )
