@@ -55,8 +55,8 @@ const BusDetail = () => {
 
 
     return (
-        <div className='bus-bg-config'>
-            <div className='bus-layout-container'>
+        <div >
+            <div>
                 {tsuenKingRouteDetailById && tsuenKingData && tsuenKingEta &&
                     <div>
                         <div className='detail-header-container'>

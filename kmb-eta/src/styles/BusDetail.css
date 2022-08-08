@@ -1,16 +1,11 @@
-.bus-bg-config {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+/* 
 .bus-layout-container {
     border: 2px #dddddd solid;
     width: 22rem;
     height: 70vh;
     margin-top: 5rem;
     position: relative;
-}
+} */
 
 .detail-header-container {
     height: 5vh;
@@ -18,6 +13,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 10;
 }
 
 .detail-header-content {
@@ -31,17 +30,20 @@
     top: 1.6%;
     left: 3%;
     cursor: pointer;
+    z-index: 10;
 }
 
 .map-container {
     border-bottom: 5px #ED1F28 solid;
-    height: 40vh;
+    height: 50vh;
+    margin-top: 3rem;
 }
 
 .location {
     padding: 1rem;
     font-weight: bold;
     color: #121212;
+    font-size: 1.4rem;
 }
 
 .eta-container {
@@ -60,17 +62,17 @@
 }
 
 .eta-time {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #1E71BA;
     /* width: 1.5rem; */
 }
 
 .eta-min {
-    font-size: 0.1rem;
+    font-size: 0.8rem;
 }
 
 .eta-rmk {
-    font-size: 1rem;
-    margin-left: 0.2rem;
+    font-size: 1.2rem;
+    margin-left: 0.3rem;
     color: #888888
 }
