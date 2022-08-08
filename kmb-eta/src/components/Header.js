@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Header.css';
 import infoIcon from '../assets/icon/info.png'
+import { Link } from 'react-router-dom';
 
 function Header() {
     return (
@@ -10,7 +11,9 @@ function Header() {
                     APP 1933
                 </div>
                 <div className='info-icon'>
-                    <img src={infoIcon} width='70%' />
+                    <Link to={'/contact'} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <img src={infoIcon} width='70%' />
+                    </Link>
                 </div>
 
             </div>

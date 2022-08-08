@@ -4,6 +4,7 @@ import './styles/App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import BusDetail from './components/BusDetail';
 import CwkBusDetail from './components/CwkBusDetail';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/cwk-bus-detail" element={<CwkBusDetail />} >
           <Route path=":id" element={<CwkBusDetail />} />
         </Route>
+        <Route path='/contact' element={<Contact />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
