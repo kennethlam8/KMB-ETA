@@ -23,8 +23,39 @@
 }
 
 .contact-info-box {
-    width: 22rem;
-    height: 25rem;
-    border: #ED1F28 5px solid;
+    width: 20rem;
+    height: 23rem;
     border-radius: 20px;
+    background-color: #ED1F28;
+    padding: 1rem;
+}
+
+.contact-info-circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.contact-info-circle {
+    width: 10rem;
+    height: 10rem;
+    background-color: #eeeeee;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info-text {
+    font-weight: bold;
+    color: #fff;
+
 }

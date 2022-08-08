@@ -1,7 +1,8 @@
 import '../styles/Contact.css'
 import userIcon from '../assets/icon/user.png'
-// import userIcon from '../assets/icon/user.png'
-// import userIcon from '../assets/icon/user.png'
+import emailIcon from '../assets/icon/email.png'
+import gitIcon from '../assets/icon/github.png'
+import kmbIcon from '../assets/image/kmb-favicon.png'
 
 function Contact() {
     return (
@@ -11,19 +12,31 @@ function Contact() {
             </div>
             <div className='contact-info-container'>
                 <div className='contact-info-box'>
-                    <div>
-                        <img />
-                        <p>Kenneth Lam</p>
+                    <div className='contact-info-circle-container'>
+                        <div className='contact-info-circle'>
+                            <img src={kmbIcon} width='90%' style={{ marginRight: '10px' }} />
+                        </div>
                     </div>
 
-                    <div>
-                        <img />
-                        <p>kennethdev8@gamil.com</p>
+                    <div className='contact-info'>
+                        <div>
+                            <img src={userIcon} width='60%' />
+                        </div>
+                        <div className='contact-info-text'>Kenneth Lam</div>
                     </div>
 
-                    <div>
-                        <img />
-                        <a href="https://github.com/kennethlam8" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <div className='contact-info'>
+                        <div>
+                            <img src={emailIcon} width='60%' />
+                        </div>
+                        <div className='contact-info-text'>kennethdev8@gamil.com</div>
+                    </div>
+
+                    <div className='contact-info'>
+                        <div>
+                            <img src={gitIcon} width='60%' />
+                        </div>
+                        <a href="https://github.com/kennethlam8" className='contact-info-text' style={{ textDecoration: 'none' }}>
                             https://github.com/kennethlam8
                         </a>
                     </div>
