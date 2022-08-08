@@ -6,10 +6,10 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapPin, faListUl } from '@fortawesome/free-solid-svg-icons'
-import kmbIcon from '../assets/image/kmb-favicon.png'
+import { Oval } from 'react-loading-icons'
 import moment from 'moment';
 import PullToRefresh from 'react-simple-pull-to-refresh';
-import { Oval } from 'react-loading-icons'
+
 
 
 const Home = () => {
@@ -17,7 +17,6 @@ const Home = () => {
     const [routeData, setRouteData] = useState()
     const [tsuenKingData, setTsuenKingData] = useState()
     const [chaiWanKokData, setChaiWanKokData] = useState()
-
     const [chaiWanKokRouteData, setChaiWanKokRouteData] = useState(false)
     const [dropdown, setDropdown] = useState(false)
     const [refresh, setRefresh] = useState(false)
@@ -27,48 +26,58 @@ const Home = () => {
 
         if (chaiWanKokRouteData) {
             getChaiWanKokRouteData()
-            console.log('bbbbbbbbbbbbbbbbbbbb')
-            return
+            // return
         }
-
         getTsuenKingRouteData()
         getTsuenKingData()
         getChaiWanKokData()
-        console.log('aaaaaaaaaaaaaaaaa')
-
     }, [chaiWanKokRouteData])
 
 
+
     const getTsuenKingRouteData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/BFA3460955AC820C")
-        const data = await res.json()
-        const tkData = Object.values(data)[3]
-        setRouteData(tkData)
-        // console.log('fetch data : ', tkData)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/BFA3460955AC820C")
+            const data = await res.json()
+            const tkData = Object.values(data)[3]
+            setRouteData(tkData)
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     const getTsuenKingData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/BFA3460955AC820C")
-        const data = await res.json()
-        const tkDataName = data.data.name_tc
-        setTsuenKingData(tkDataName)
-        console.log('fetch TsuenKingData : ', data.data)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/BFA3460955AC820C")
+            const data = await res.json()
+            const tkDataName = data.data.name_tc
+            setTsuenKingData(tkDataName)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getChaiWanKokRouteData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/5FB1FCAF80F3D97D")
-        const data = await res.json()
-        const cwkData = Object.values(data)[3]
-        setRouteData(cwkData)
-        // console.log('fetch data : ', cwkData)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/5FB1FCAF80F3D97D")
+            const data = await res.json()
+            const cwkData = Object.values(data)[3]
+            setRouteData(cwkData)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getChaiWanKokData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/5FB1FCAF80F3D97D")
-        const data = await res.json()
-        const cwkDataName = data.data.name_tc
-        setChaiWanKokData(cwkDataName)
-        // console.log('fetch TsuenKingData : ', data.data)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/5FB1FCAF80F3D97D")
+            const data = await res.json()
+            const cwkDataName = data.data.name_tc
+            setChaiWanKokData(cwkDataName)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
@@ -156,20 +165,13 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-
                             }
                         </div>
                     </div>
                 </div>
 
-
                 <div className='pulldown-msg-container'>
-                    {refresh
-                        ? <div className='pulldown-msg'>更新中...</div>
-                        : <div className='pulldown-msg'>下拉以更新</div>
-                    }
-
-
+                    {refresh ? <div className='pulldown-msg'>更新中...</div> : <div className='pulldown-msg'>下拉以更新</div>}
                 </div>
 
                 <div className='bus-list-container'>
@@ -183,6 +185,7 @@ const Home = () => {
                                     return (
                                         <div key={index}>
                                             {chaiWanKokRouteData
+
                                                 ? <Link to={`/cwk-bus-detail/${index}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                     <div className='bus-list'>
                                                         <div className='bus-number'>{busInfo.route}</div>
@@ -196,20 +199,6 @@ const Home = () => {
 
                                                         </div>
                                                         <div className='waiting-time'>
-                                                            {/* <div className='waiting-time-number'>
-                                        {moment(busInfo.eta).fromNow() === 'Invalid date'
-                                            // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
-                                            // || moment(busInfo.eta).fromNow() == 'a minute ago'
-                                            // || moment(busInfo.eta).fromNow() == 'in a few seconds'
-                                            // || moment(busInfo.eta).fromNow() == 'in a few minutes'
-                                            || moment(busInfo.eta).fromNow().includes('ago')
-                                            || moment(busInfo.eta).fromNow().includes('few')
-                                            || moment(busInfo.eta).fromNow().includes('a')
-                                            ? '-'
-                                            : moment(busInfo.eta).fromNow().substring(3, 5)
-                                        }
-                                    </div>
-                                    <div className='waiting-time-minute'>分鐘</div> */}
                                                             {busEtaFormat(busInfo.eta)}
                                                         </div>
                                                     </div>
@@ -228,21 +217,7 @@ const Home = () => {
 
                                                         </div>
                                                         <div className='waiting-time'>
-                                                            {/* {moment(busInfo.eta).fromNow() === 'Invalid date'
-                                            // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
-                                            // || moment(busInfo.eta).fromNow() == 'a minute ago'
-                                            // || moment(busInfo.eta).fromNow() == 'in a few seconds'
-                                            // || moment(busInfo.eta).fromNow() == 'in a few minutes'
-                                            || moment(busInfo.eta).fromNow().includes('ago')
-                                            || moment(busInfo.eta).fromNow().includes('few')
-                                            || moment(busInfo.eta).fromNow().includes('a')
-                                            ? '-'
-                                            : moment(busInfo.eta).fromNow().substring(3, 5)
-                                        } */}
-
                                                             {busEtaFormat(busInfo.eta)}
-
-                                                            {/* <div className='waiting-time-minute'>分鐘</div> */}
                                                         </div>
                                                     </div>
                                                 </Link>
