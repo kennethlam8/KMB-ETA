@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapPin, faListUl } from '@fortawesome/free-solid-svg-icons'
 import kmbIcon from '../assets/image/kmb-favicon.png'
 import moment from 'moment';
+import PullToRefresh from 'react-simple-pull-to-refresh';
+import { Oval } from 'react-loading-icons'
 
 
 const Home = () => {
@@ -18,6 +20,7 @@ const Home = () => {
 
     const [chaiWanKokRouteData, setChaiWanKokRouteData] = useState(false)
     const [dropdown, setDropdown] = useState(false)
+    const [refresh, setRefresh] = useState(false)
 
 
     useEffect(() => {
@@ -34,6 +37,19 @@ const Home = () => {
         console.log('aaaaaaaaaaaaaaaaa')
 
     }, [chaiWanKokRouteData])
+
+
+    useEffect(() => {
+
+        if (chaiWanKokRouteData) {
+            getChaiWanKokRouteData()
+            return
+        }
+
+        getTsuenKingRouteData()
+
+    }, [refresh])
+
 
 
     const getTsuenKingRouteData = async () => {
@@ -97,10 +113,15 @@ const Home = () => {
                 <div className='waiting-time-number'>{moment(busEta).fromNow().substring(3, 5)}</div>
                 <div className='waiting-time-minute'>分鐘</div>
             </div>
-
-
         )
+    }
 
+    const handlePullDownRefresh = () => {
+        return new Promise(res => {
+            setTimeout(() => {
+                res(chaiWanKokRouteData ? getChaiWanKokRouteData() : getTsuenKingRouteData())
+            }, 1000)
+        })
     }
 
 
@@ -154,91 +175,94 @@ const Home = () => {
 
 
                 <div className='bus-list-container'>
+                    <PullToRefresh onRefresh={handlePullDownRefresh} refreshingContent={<Oval stroke={"#ED1F28"} height={"30px"} />} >
 
-                    {routeData ?
+                        {routeData ?
 
-                        routeData.map((busInfo, index) => {
+                            routeData.map((busInfo, index) => {
 
-                            if (busInfo.eta_seq <= 2) {
-                                return (
-                                    <div key={index}>
-                                        {chaiWanKokRouteData
-                                            ? <Link to={`/cwk-bus-detail/${index}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                                <div className='bus-list'>
-                                                    <div className='bus-number'>{busInfo.route}</div>
-                                                    <div style={{ flex: 1 }}>
-                                                        <div style={{ fontSize: '0.1rem' }}>
-                                                            往<span className='destination'>{busInfo.dest_tc}</span>
+                                if (busInfo.eta_seq <= 2) {
+                                    return (
+                                        <div key={index}>
+                                            {chaiWanKokRouteData
+                                                ? <Link to={`/cwk-bus-detail/${index}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                    <div className='bus-list'>
+                                                        <div className='bus-number'>{busInfo.route}</div>
+                                                        <div style={{ flex: 1 }}>
+                                                            <div style={{ fontSize: '0.1rem' }}>
+                                                                往<span className='destination'>{busInfo.dest_tc}</span>
+                                                            </div>
+                                                            <div style={{ fontSize: '0.95rem' }}>
+                                                                {chaiWanKokData}
+                                                            </div>
+
                                                         </div>
-                                                        <div style={{ fontSize: '0.95rem' }}>
-                                                            {chaiWanKokData}
-                                                        </div>
-
-                                                    </div>
-                                                    <div className='waiting-time'>
-                                                        {/* <div className='waiting-time-number'>
-                                                            {moment(busInfo.eta).fromNow() === 'Invalid date'
-                                                                // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
-                                                                // || moment(busInfo.eta).fromNow() == 'a minute ago'
-                                                                // || moment(busInfo.eta).fromNow() == 'in a few seconds'
-                                                                // || moment(busInfo.eta).fromNow() == 'in a few minutes'
-                                                                || moment(busInfo.eta).fromNow().includes('ago')
-                                                                || moment(busInfo.eta).fromNow().includes('few')
-                                                                || moment(busInfo.eta).fromNow().includes('a')
-                                                                ? '-'
-                                                                : moment(busInfo.eta).fromNow().substring(3, 5)
-                                                            }
-                                                        </div>
-                                                        <div className='waiting-time-minute'>分鐘</div> */}
-                                                        {busEtaFormat(busInfo.eta)}
-                                                    </div>
-                                                </div>
-                                            </Link>
-
-                                            : <Link to={`/bus-detail/${index}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                                <div className='bus-list'>
-                                                    <div className='bus-number'>{busInfo.route}</div>
-                                                    <div style={{ flex: 1 }}>
-                                                        <div style={{ fontSize: '0.1rem' }}>
-                                                            往<span className='destination'>{busInfo.dest_tc}</span>
-                                                        </div>
-                                                        <div style={{ fontSize: '0.95rem' }}>
-                                                            {tsuenKingData}
-                                                        </div>
-
-                                                    </div>
-                                                    <div className='waiting-time'>
-                                                        {/* {moment(busInfo.eta).fromNow() === 'Invalid date'
-                                                                // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
-                                                                // || moment(busInfo.eta).fromNow() == 'a minute ago'
-                                                                // || moment(busInfo.eta).fromNow() == 'in a few seconds'
-                                                                // || moment(busInfo.eta).fromNow() == 'in a few minutes'
-                                                                || moment(busInfo.eta).fromNow().includes('ago')
-                                                                || moment(busInfo.eta).fromNow().includes('few')
-                                                                || moment(busInfo.eta).fromNow().includes('a')
-                                                                ? '-'
-                                                                : moment(busInfo.eta).fromNow().substring(3, 5)
-                                                            } */}
-
-                                                        {busEtaFormat(busInfo.eta)}
-
-                                                        {/* <div className='waiting-time-minute'>分鐘</div> */}
-                                                    </div>
-                                                </div>
-                                            </Link>
+                                                        <div className='waiting-time'>
+                                                            {/* <div className='waiting-time-number'>
+                                        {moment(busInfo.eta).fromNow() === 'Invalid date'
+                                            // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
+                                            // || moment(busInfo.eta).fromNow() == 'a minute ago'
+                                            // || moment(busInfo.eta).fromNow() == 'in a few seconds'
+                                            // || moment(busInfo.eta).fromNow() == 'in a few minutes'
+                                            || moment(busInfo.eta).fromNow().includes('ago')
+                                            || moment(busInfo.eta).fromNow().includes('few')
+                                            || moment(busInfo.eta).fromNow().includes('a')
+                                            ? '-'
+                                            : moment(busInfo.eta).fromNow().substring(3, 5)
                                         }
-
                                     </div>
+                                    <div className='waiting-time-minute'>分鐘</div> */}
+                                                            {busEtaFormat(busInfo.eta)}
+                                                        </div>
+                                                    </div>
+                                                </Link>
 
-                                )
-                            }
+                                                : <Link to={`/bus-detail/${index}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                    <div className='bus-list'>
+                                                        <div className='bus-number'>{busInfo.route}</div>
+                                                        <div style={{ flex: 1 }}>
+                                                            <div style={{ fontSize: '0.1rem' }}>
+                                                                往<span className='destination'>{busInfo.dest_tc}</span>
+                                                            </div>
+                                                            <div style={{ fontSize: '0.95rem' }}>
+                                                                {tsuenKingData}
+                                                            </div>
 
-                        })
-                        :
-                        <LoadingImage />
-                    }
+                                                        </div>
+                                                        <div className='waiting-time'>
+                                                            {/* {moment(busInfo.eta).fromNow() === 'Invalid date'
+                                            // || moment(busInfo.eta).fromNow() == 'a few seconds ago'
+                                            // || moment(busInfo.eta).fromNow() == 'a minute ago'
+                                            // || moment(busInfo.eta).fromNow() == 'in a few seconds'
+                                            // || moment(busInfo.eta).fromNow() == 'in a few minutes'
+                                            || moment(busInfo.eta).fromNow().includes('ago')
+                                            || moment(busInfo.eta).fromNow().includes('few')
+                                            || moment(busInfo.eta).fromNow().includes('a')
+                                            ? '-'
+                                            : moment(busInfo.eta).fromNow().substring(3, 5)
+                                        } */}
 
+                                                            {busEtaFormat(busInfo.eta)}
+
+                                                            {/* <div className='waiting-time-minute'>分鐘</div> */}
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            }
+
+                                        </div>
+
+                                    )
+                                }
+
+                            })
+                            :
+                            <LoadingImage />
+                        }
+
+                    </PullToRefresh>
                 </div>
+
             </div>
         </div>
     )
