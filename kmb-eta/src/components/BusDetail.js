@@ -52,7 +52,28 @@ const BusDetail = () => {
         console.log('fetch tkEtaData (ETA) : ', tkData)
     }
 
-
+    const busEtaFormat = (busEta) => {
+        if (moment(busEta).fromNow() === 'Invalid date') {
+            return (
+                <div className='caution-container'>
+                    <span className='caution'>!</span>
+                </div>
+            )
+        } else if (moment(busEta).fromNow().includes('ago') || moment(busEta).fromNow().includes('few') || moment(busEta).fromNow().includes('a')) {
+            return (
+                <div className='waiting-time-container'>
+                    <div className='waiting-time-number'>-</div>
+                    <div className='waiting-time-minute'>分鐘</div>
+                </div>
+            )
+        }
+        return (
+            <div className='waiting-time-container'>
+                <div className='waiting-time-number'>{moment(busEta).fromNow().substring(3, 5)}</div>
+                <div className='waiting-time-minute'>分鐘</div>
+            </div>
+        )
+    }
 
     return (
         <div >
@@ -79,13 +100,14 @@ const BusDetail = () => {
                                             <div key={index} className="eta-container">
                                                 <div className='eta-time-container'>
                                                     <div className="eta-time">
-                                                        {moment(routeData.eta).fromNow() == 'Invalid date'
+                                                        {/* {moment(routeData.eta).fromNow() == 'Invalid date'
                                                             || moment(routeData.eta).fromNow().includes('ago')
                                                             || moment(routeData.eta).fromNow().includes('few')
                                                             || moment(routeData.eta).fromNow().includes('a')
                                                             ? '-'
                                                             : moment(routeData.eta).fromNow().substring(3, 5)
-                                                        }
+                                                        } */}
+                                                        {busEtaFormat(routeData.eta)}
                                                     </div>
                                                 </div>
 
