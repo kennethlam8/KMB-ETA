@@ -52,6 +52,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .contact-info-text {
