@@ -61,8 +61,8 @@ const CwkBusDetail = () => {
 
 
     return (
-        <div className='bus-bg-config'>
-            <div className='bus-layout-container'>
+        <div >
+            <div>
                 {chaiWanKokRouteDetailById && chaiWanKokData && chaiWanKokEta &&
                     <div>
                         <div className='detail-header-container'>
@@ -83,15 +83,18 @@ const CwkBusDetail = () => {
                                     if (routeData.route === chaiWanKokRouteDetailById.route) {
                                         return (
                                             <div key={index} className="eta-container">
-                                                <div className="eta-time">
-                                                    {moment(routeData.eta).fromNow() == 'Invalid date'
-                                                        || moment(routeData.eta).fromNow().includes('ago')
-                                                        || moment(routeData.eta).fromNow().includes('few')
-                                                        || moment(routeData.eta).fromNow().includes('a')
-                                                        ? '-'
-                                                        : moment(routeData.eta).fromNow().substring(3, 5)
-                                                    }
+                                                <div className='eta-time-container'>
+                                                    <div className="eta-time">
+                                                        {moment(routeData.eta).fromNow() == 'Invalid date'
+                                                            || moment(routeData.eta).fromNow().includes('ago')
+                                                            || moment(routeData.eta).fromNow().includes('few')
+                                                            || moment(routeData.eta).fromNow().includes('a')
+                                                            ? '-'
+                                                            : moment(routeData.eta).fromNow().substring(3, 5)
+                                                        }
+                                                    </div>
                                                 </div>
+
                                                 <div className='eta-min'>分鐘<span className='eta-rmk'>{routeData.rmk_tc}</span></div>
 
                                             </div>

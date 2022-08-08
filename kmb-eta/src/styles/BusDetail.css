@@ -64,11 +64,11 @@
 .eta-time {
     font-size: 1.3rem;
     color: #1E71BA;
-    /* width: 1.5rem; */
 }
 
 .eta-min {
     font-size: 0.8rem;
+    margin-left: 0.3rem;
 }
 
 .eta-rmk {
