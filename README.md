@@ -3,6 +3,9 @@
 #### Click to visit: 
 <br/>
 <br/>
+
+### Introduction 
+
 This is a web application that mimics the KMB app, you can check the ETA and watch the route of buses near 荃景圍天橋 and 荃灣柴灣角街. For better user experience, you can pulldown to get the latest data or choose specific stop that you want by clicking the dropdown button. 
 <br/>
 <br/>
