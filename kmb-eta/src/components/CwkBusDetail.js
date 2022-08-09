@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import '../styles/CwkBusDetail.css'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -8,6 +8,7 @@ import moment from 'moment';
 
 
 const CwkBusDetail = () => {
+
     const navigate = useNavigate();
     let params = useParams()
 
@@ -21,43 +22,67 @@ const CwkBusDetail = () => {
 
     }, [])
 
-
     useEffect(() => {
         getChaiWanKokEta()
     }, [chaiWanKokRouteDetailById])
 
 
-
     const getChaiWanKokRouteData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/5FB1FCAF80F3D97D")
-        const data = await res.json()
-        const cwkData = Object.values(data)[3]
-        const tkRouteData = cwkData[params.id]
-        setChaiWanKokRouteDetailById(tkRouteData)
-        console.log('fetch data : ', tkRouteData)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/5FB1FCAF80F3D97D")
+            const data = await res.json()
+            const cwkData = Object.values(data)[3]
+            const tkRouteData = cwkData[params.id]
+            setChaiWanKokRouteDetailById(tkRouteData)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
     const getChaiWanKokData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/5FB1FCAF80F3D97D")
-        const data = await res.json()
-        const cwkDataName = data.data
-        setChaiWanKokData(cwkDataName)
-        console.log('fetch TsuenKingData : ', data.data)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/5FB1FCAF80F3D97D")
+            const data = await res.json()
+            const cwkDataName = data.data
+            setChaiWanKokData(cwkDataName)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
     const getChaiWanKokEta = async () => {
-        const res = await fetch(`https://data.etabus.gov.hk/v1/transport/kmb/eta/5FB1FCAF80F3D97D/${chaiWanKokRouteDetailById.route}/${chaiWanKokRouteDetailById.service_type}`)
-        const data = await res.json()
-        const tkData = Object.values(data)[3]
-        setChaiWanKokEta(tkData)
-        console.log('fetch tkEtaData (ETA) : ', tkData)
+        try {
+            const res = await fetch(`https://data.etabus.gov.hk/v1/transport/kmb/eta/5FB1FCAF80F3D97D/${chaiWanKokRouteDetailById.route}/${chaiWanKokRouteDetailById.service_type}`)
+            const data = await res.json()
+            const tkData = Object.values(data)[3]
+            setChaiWanKokEta(tkData)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-
-
-
+    const busEtaFormat = (busEta) => {
+        if (moment(busEta).fromNow() === 'Invalid date') {
+            return (
+                <div className='caution-container'>
+                    <span className='caution'>!</span>
+                </div>
+            )
+        } else if (moment(busEta).fromNow().includes('ago') || moment(busEta).fromNow().includes('few') || moment(busEta).fromNow().includes('a')) {
+            return (
+                <div className='waiting-time-container'>
+                    <div className='waiting-time-number'>-</div>
+                </div>
+            )
+        }
+        return (
+            <div className='waiting-time-container'>
+                <div className='waiting-time-number'>{moment(busEta).fromNow().substring(3, 5)}</div>
+            </div>
+        )
+    }
 
 
     return (
@@ -75,7 +100,6 @@ const CwkBusDetail = () => {
                         <div>
                             <div className='map-container'>
                                 <Map isCwkMarker={true} cwkLatLng={{ lat: Number(chaiWanKokData.lat), lng: Number(chaiWanKokData.long) }} />
-
                             </div>
                             <div>
                                 <div className='location'>{chaiWanKokData.name_tc}</div>
@@ -85,30 +109,18 @@ const CwkBusDetail = () => {
                                             <div key={index} className="eta-container">
                                                 <div className='eta-time-container'>
                                                     <div className="eta-time">
-                                                        {moment(routeData.eta).fromNow() == 'Invalid date'
-                                                            || moment(routeData.eta).fromNow().includes('ago')
-                                                            || moment(routeData.eta).fromNow().includes('few')
-                                                            || moment(routeData.eta).fromNow().includes('a')
-                                                            ? '-'
-                                                            : moment(routeData.eta).fromNow().substring(3, 5)
-                                                        }
+                                                        {busEtaFormat(routeData.eta)}
                                                     </div>
                                                 </div>
-
                                                 <div className='eta-min'>分鐘<span className='eta-rmk'>{routeData.rmk_tc}</span></div>
-
                                             </div>
                                         )
                                     }
                                 })}
                             </div>
-
                         </div>
-
                     </div>
-
                 }
-
             </div>
         </div>
     )

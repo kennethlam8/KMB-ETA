@@ -1,17 +1,3 @@
-/* .bus-bg-config {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.bus-layout-container {
-    border: 2px #dddddd solid;
-    width: 22rem;
-    height: 70vh;
-    margin-top: 5rem;
-    position: relative;
-} */
-
 .detail-header-container {
     height: 5vh;
     background-color: #ED1F28;
@@ -80,4 +66,43 @@
     font-size: 1.2rem;
     margin-left: 0.3rem;
     color: #888888
+}
+
+.waiting-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px
+}
+
+.waiting-time-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.waiting-time-number {
+    font-size: 1.5rem;
+    color: #1E71BA;
+}
+
+.waiting-time-minute {
+    font-size: 0.1rem;
+}
+
+.caution-container {
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 2px #1E71BA solid;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caution {
+    color: #1E71BA;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 4px;
 }
