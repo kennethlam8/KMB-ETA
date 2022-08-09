@@ -2,7 +2,7 @@
 
 Click to visit: 
 
-![testing](/image/kmb-banner.jpg)
+![testing](./kmb-eta/src/assets/image/kmb-banner.jpg)
 
 # Installing 
 
