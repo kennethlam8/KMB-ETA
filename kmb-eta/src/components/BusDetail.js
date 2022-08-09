@@ -5,9 +5,14 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
 import Map from './Map'
 import moment from 'moment';
+import { useLoadScript } from "@react-google-maps/api";
+import loadingIcon from '../assets/icon/loading.png'
 
 
 const BusDetail = () => {
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}` || "",
+    });
 
     const navigate = useNavigate();
     let params = useParams()
@@ -16,6 +21,8 @@ const BusDetail = () => {
     const [tsuenKingRouteDetailById, setTsuenKingRouteDetailById] = useState()
     const [tsuenKingData, setTsuenKingData] = useState()
 
+    const [isRouteShow, setIsRouteShow] = useState(false)
+    const [isShowAllStops, setIsShowAllStops] = useState(false)
 
     useEffect(() => {
         getTsuenKingRouteData()
@@ -34,6 +41,9 @@ const BusDetail = () => {
             const data = await res.json()
             const tkData = Object.values(data)[3]
             const tkRouteDataById = tkData[params.id]
+
+            console.log('tk bus detail by ID :', tkRouteDataById)
+
             setTsuenKingRouteDetailById(tkRouteDataById)
         } catch (error) {
             console.log(error)
@@ -83,6 +93,15 @@ const BusDetail = () => {
         )
     }
 
+    if (!isLoaded) {
+        return (
+
+            <div className='loading-image-container'>
+                <img src={loadingIcon} alt="loading" className='loading-image' />
+            </div>
+        )
+    }
+
     return (
         <div >
             <div>
@@ -96,7 +115,34 @@ const BusDetail = () => {
                         <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
                         <div>
                             <div className='map-container'>
-                                <Map isCwkMarker={false} tkLatLng={{ lat: Number(tsuenKingData.lat), lng: Number(tsuenKingData.long) }} />
+                                <Map
+                                    isCwkMarker={false}
+                                    tkLatLng={{ lat: Number(tsuenKingData.lat), lng: Number(tsuenKingData.long) }}
+                                    stopId={tsuenKingData.stop}
+                                    route={tsuenKingRouteDetailById.route}
+                                    direction={tsuenKingRouteDetailById.dir}
+                                    service={tsuenKingRouteDetailById.service_type}
+                                    busStopName={tsuenKingData.name_tc}
+                                    isRouteShow={isRouteShow}
+                                    isShowAllStops={isShowAllStops}
+                                />
+                            </div>
+                            <div className='detail-button-container'>
+                                <div className='detail-button-box'>
+                                    {!isRouteShow
+                                        ? <div className='detail-button' onClick={() => setIsRouteShow(true)}>
+                                            顯示路線
+                                        </div>
+                                        : <div className='detail-button' onClick={() => setIsRouteShow(false)}>
+                                            隱藏路線
+                                        </div>
+                                    }
+
+                                    <div className='detail-button' onClick={() => setIsShowAllStops(true)}>
+                                        觀看全部
+                                    </div>
+                                </div>
+
                             </div>
                             <div>
                                 <div className='location'>{tsuenKingData.name_tc}</div>

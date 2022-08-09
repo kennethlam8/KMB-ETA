@@ -5,9 +5,14 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
 import Map from './Map'
 import moment from 'moment';
+import { useLoadScript } from "@react-google-maps/api";
+import loadingIcon from '../assets/icon/loading.png'
 
 
 const CwkBusDetail = () => {
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}` || "",
+    });
 
     const navigate = useNavigate();
     let params = useParams()
@@ -83,7 +88,14 @@ const CwkBusDetail = () => {
             </div>
         )
     }
+    if (!isLoaded) {
+        return (
 
+            <div className='loading-image-container'>
+                <img src={loadingIcon} alt="loading" className='loading-image' />
+            </div>
+        )
+    }
 
     return (
         <div >
@@ -99,7 +111,15 @@ const CwkBusDetail = () => {
                         <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
                         <div>
                             <div className='map-container'>
-                                <Map isCwkMarker={true} cwkLatLng={{ lat: Number(chaiWanKokData.lat), lng: Number(chaiWanKokData.long) }} />
+                                <Map
+                                    isCwkMarker={true}
+                                    cwkLatLng={{ lat: Number(chaiWanKokData.lat), lng: Number(chaiWanKokData.long) }}
+                                    stopId={chaiWanKokData.stop}
+                                    route={chaiWanKokRouteDetailById.route}
+                                    direction={chaiWanKokRouteDetailById.dir}
+                                    service={chaiWanKokRouteDetailById.service_type}
+                                    busStopName={chaiWanKokData.name_tc}
+                                />
                             </div>
                             <div>
                                 <div className='location'>{chaiWanKokData.name_tc}</div>
