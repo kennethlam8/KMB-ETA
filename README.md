@@ -3,11 +3,11 @@
 Click to visit: 
 
 
-<img src="./kmb-eta/src/assets/image/kmb-01.png" width="35%" paddingRight="20px"><img src="./kmb-eta/src/assets/image/kmb-05.png" width="35%">
+<img src="./kmb-eta/src/assets/image/kmb-01.png" width="35%" style="padding-right:20px"><img src="./kmb-eta/src/assets/image/kmb-05.png" width="35%">
 
-<img src="./kmb-eta/src/assets/image/kmb-02.png" width="35%">               <img src="./kmb-eta/src/assets/image/kmb-06.png" width="35%">
+<img src="./kmb-eta/src/assets/image/kmb-02.png" width="35%" style="padding-right:20px">               <img src="./kmb-eta/src/assets/image/kmb-06.png" width="35%">
 
-<img src="./kmb-eta/src/assets/image/kmb-03.png" width="35%">               <img src="./kmb-eta/src/assets/image/kmb-04.png" width="35%">
+<img src="./kmb-eta/src/assets/image/kmb-03.png" width="35%" style="padding-right:20px">               <img src="./kmb-eta/src/assets/image/kmb-04.png" width="35%">
 
 # Installing 
 
