@@ -2,7 +2,6 @@
 
 #### Click to visit: https://startling-kitten-6d3073.netlify.app/
 <br/>
-<br/>
 
 ### Introduction 
 
@@ -93,27 +92,57 @@ https://startling-kitten-6d3073.netlify.app/
 <br/>
 <br/>
 
-# Libraries
+# Assumption
+
+### Data source:
+https://data.gov.hk/tc-data/dataset/hk-td-tis_21-etakmb
+<br/>
+
+### Bus stops:
+For simplicity, the bus stops are base on two locations (荃景圍天橋 and 荃灣柴灣角街).
+<br/>
+The bus stop ID are :
+<br/>
+荃景圍天橋: "BFA3460955AC820C"
+<br/>
+荃灣柴灣角街: "5FB1FCAF80F3D97D"
+<br/>
+<br/>
+
+# Choice of solutions
 
 ### @react-google-maps/api:  
 Import Google Map
+<br/>
+User friendly, popular and comprehensive. The package is frequently maintained. 
 <br/>
 
 ### react-simple-pull-to-refresh:  
 Pull down to refresh  
 <br/>
+Simulate the mobile gesture, increase user experience while refresh.
+<br/>
 
 ### react-loading-icons:
 To add loading icon  
+<br/>
+Can import the loading icon directly with animation.
 <br/>
 
 ### @fortawesome/react-fontawesome:
 To add some useful icons  
 <br/>
+It provides numerous of icons, reduce the time of development. 
+<br/>
 
 ### react-router-dom:
 Navigate between pages  
 <br/>
+Friendly to use, popular among developers and the package is frequently maintained.
+<br/>
 
 ### moment:
 Format the time for ETA
+<br/>
+Popular package to handle date and time, clean code and useful.
+<br/>
