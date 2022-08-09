@@ -11,6 +11,7 @@ const BusDetail = () => {
 
     const navigate = useNavigate();
     let params = useParams()
+
     const [tsuenKingEta, setTsuenKingEta] = useState()
     const [tsuenKingRouteDetailById, setTsuenKingRouteDetailById] = useState()
     const [tsuenKingData, setTsuenKingData] = useState()
@@ -28,25 +29,37 @@ const BusDetail = () => {
 
 
     const getTsuenKingRouteData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/BFA3460955AC820C")
-        const data = await res.json()
-        const tkData = Object.values(data)[3]
-        const tkRouteDataById = tkData[params.id]
-        setTsuenKingRouteDetailById(tkRouteDataById)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/BFA3460955AC820C")
+            const data = await res.json()
+            const tkData = Object.values(data)[3]
+            const tkRouteDataById = tkData[params.id]
+            setTsuenKingRouteDetailById(tkRouteDataById)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getTsuenKingData = async () => {
-        const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/BFA3460955AC820C")
-        const data = await res.json()
-        const tkDataName = data.data
-        setTsuenKingData(tkDataName)
+        try {
+            const res = await fetch("https://data.etabus.gov.hk/v1/transport/kmb/stop/BFA3460955AC820C")
+            const data = await res.json()
+            const tkDataName = data.data
+            setTsuenKingData(tkDataName)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getTsuenKingEta = async () => {
-        const res = await fetch(`https://data.etabus.gov.hk/v1/transport/kmb/eta/BFA3460955AC820C/${tsuenKingRouteDetailById.route}/${tsuenKingRouteDetailById.service_type}`)
-        const data = await res.json()
-        const tkData = Object.values(data)[3]
-        setTsuenKingEta(tkData)
+        try {
+            const res = await fetch(`https://data.etabus.gov.hk/v1/transport/kmb/eta/BFA3460955AC820C/${tsuenKingRouteDetailById.route}/${tsuenKingRouteDetailById.service_type}`)
+            const data = await res.json()
+            const tkData = Object.values(data)[3]
+            setTsuenKingEta(tkData)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const busEtaFormat = (busEta) => {
@@ -79,13 +92,11 @@ const BusDetail = () => {
                             <div className='detail-header-content'>
                                 {tsuenKingRouteDetailById.route} 往 {tsuenKingRouteDetailById.dest_tc}
                             </div>
-
                         </div>
                         <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
                         <div>
                             <div className='map-container'>
                                 <Map isCwkMarker={false} tkLatLng={{ lat: Number(tsuenKingData.lat), lng: Number(tsuenKingData.long) }} />
-
                             </div>
                             <div>
                                 <div className='location'>{tsuenKingData.name_tc}</div>
@@ -104,17 +115,11 @@ const BusDetail = () => {
                                             </div>
                                         )
                                     }
-
-
                                 })}
-
                             </div>
                         </div>
-
                     </div>
-
                 }
-
             </div>
         </div>
     )
