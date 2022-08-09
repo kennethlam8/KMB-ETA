@@ -2,13 +2,13 @@ import '../styles/Home.css'
 import Header from './Header';
 import banner from '../assets/image/kmb-banner.jpg'
 import loadingIcon from '../assets/icon/loading.png'
+import moment from 'moment';
+import PullToRefresh from 'react-simple-pull-to-refresh';
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapPin, faListUl } from '@fortawesome/free-solid-svg-icons'
 import { Oval } from 'react-loading-icons'
-import moment from 'moment';
-import PullToRefresh from 'react-simple-pull-to-refresh';
 
 
 
@@ -21,18 +21,15 @@ const Home = () => {
     const [dropdown, setDropdown] = useState(false)
     const [refresh, setRefresh] = useState(false)
 
-
     useEffect(() => {
 
         if (chaiWanKokRouteData) {
             getChaiWanKokRouteData()
-            // return
         }
         getTsuenKingRouteData()
         getTsuenKingData()
         getChaiWanKokData()
     }, [chaiWanKokRouteData])
-
 
 
     const getTsuenKingRouteData = async () => {
@@ -81,14 +78,6 @@ const Home = () => {
     }
 
 
-    const LoadingImage = () => {
-        return (
-            <div className='loading-image-container'>
-                <img src={loadingIcon} alt="loading" className='loading-image' />
-            </div>
-        )
-    }
-
     const busEtaFormat = (busEta) => {
         if (moment(busEta).fromNow() === 'Invalid date') {
             return (
@@ -124,6 +113,14 @@ const Home = () => {
         })
     }
 
+    const LoadingImage = () => {
+        return (
+            <div className='loading-image-container'>
+                <img src={loadingIcon} alt="loading" className='loading-image' />
+            </div>
+        )
+    }
+
 
     return (
         <div>
@@ -142,8 +139,8 @@ const Home = () => {
                         <div className='current-location'>
                             <FontAwesomeIcon icon={faMapPin} className='current-location-icon' />
                             {chaiWanKokRouteData ? chaiWanKokData : tsuenKingData}
-
                         </div>
+
                         <div>
                             {dropdown
                                 ? <FontAwesomeIcon icon={faListUl} className='select-location-icon-active' onClick={() => setDropdown(!dropdown)} />
@@ -178,10 +175,8 @@ const Home = () => {
                     <PullToRefresh onRefresh={handlePullDownRefresh} refreshingContent={<Oval stroke={"#ED1F28"} height={"30px"} />} >
 
                         {routeData ?
-
                             routeData.map((busInfo, index) => {
-
-                                if (busInfo.eta_seq <= 2) {
+                                if (busInfo.eta_seq == 1) {
                                     return (
                                         <div key={index}>
                                             {chaiWanKokRouteData
@@ -214,7 +209,6 @@ const Home = () => {
                                                             <div style={{ fontSize: '0.95rem' }}>
                                                                 {tsuenKingData}
                                                             </div>
-
                                                         </div>
                                                         <div className='waiting-time'>
                                                             {busEtaFormat(busInfo.eta)}
@@ -222,20 +216,15 @@ const Home = () => {
                                                     </div>
                                                 </Link>
                                             }
-
                                         </div>
-
                                     )
                                 }
-
                             })
                             :
                             <LoadingImage />
                         }
-
                     </PullToRefresh>
                 </div>
-
             </div>
         </div>
     )
