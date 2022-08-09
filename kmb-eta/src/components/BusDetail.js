@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import '../styles/BusDetail.css'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -33,7 +33,6 @@ const BusDetail = () => {
         const tkData = Object.values(data)[3]
         const tkRouteDataById = tkData[params.id]
         setTsuenKingRouteDetailById(tkRouteDataById)
-        console.log('fetch tkEtaData params.id : ', tkRouteDataById)
     }
 
     const getTsuenKingData = async () => {
@@ -41,7 +40,6 @@ const BusDetail = () => {
         const data = await res.json()
         const tkDataName = data.data
         setTsuenKingData(tkDataName)
-        console.log('fetch TsuenKingData : ', tkDataName)
     }
 
     const getTsuenKingEta = async () => {
@@ -49,7 +47,6 @@ const BusDetail = () => {
         const data = await res.json()
         const tkData = Object.values(data)[3]
         setTsuenKingEta(tkData)
-        console.log('fetch tkEtaData (ETA) : ', tkData)
     }
 
     const busEtaFormat = (busEta) => {
@@ -63,14 +60,12 @@ const BusDetail = () => {
             return (
                 <div className='waiting-time-container'>
                     <div className='waiting-time-number'>-</div>
-                    <div className='waiting-time-minute'>分鐘</div>
                 </div>
             )
         }
         return (
             <div className='waiting-time-container'>
                 <div className='waiting-time-number'>{moment(busEta).fromNow().substring(3, 5)}</div>
-                <div className='waiting-time-minute'>分鐘</div>
             </div>
         )
     }
@@ -100,13 +95,6 @@ const BusDetail = () => {
                                             <div key={index} className="eta-container">
                                                 <div className='eta-time-container'>
                                                     <div className="eta-time">
-                                                        {/* {moment(routeData.eta).fromNow() == 'Invalid date'
-                                                            || moment(routeData.eta).fromNow().includes('ago')
-                                                            || moment(routeData.eta).fromNow().includes('few')
-                                                            || moment(routeData.eta).fromNow().includes('a')
-                                                            ? '-'
-                                                            : moment(routeData.eta).fromNow().substring(3, 5)
-                                                        } */}
                                                         {busEtaFormat(routeData.eta)}
                                                     </div>
                                                 </div>
