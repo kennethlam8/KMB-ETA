@@ -2,17 +2,12 @@
 
 Click to visit: 
 
-<!-- ![view-01](./kmb-eta/src/assets/image/kmb-01.png)  ![view-05](./kmb-eta/src/assets/image/kmb-05.png)
 
-![view-02](./kmb-eta/src/assets/image/kmb-02.png)  ![view-06](./kmb-eta/src/assets/image/kmb-06.png)
+<img src="./kmb-eta/src/assets/image/kmb-01.png" width="35%">               <img src="./kmb-eta/src/assets/image/kmb-05.png" width="35%">
 
-![view-03](./kmb-eta/src/assets/image/kmb-03.png)  ![view-04](./kmb-eta/src/assets/image/kmb-04.png) -->
+<img src="./kmb-eta/src/assets/image/kmb-02.png" width="35%">               <img src="./kmb-eta/src/assets/image/kmb-06.png" width="35%">
 
-<img src="./kmb-eta/src/assets/image/kmb-01.png" width="35%">&nbsp&nbsp&nbsp<img src="./kmb-eta/src/assets/image/kmb-05.png" width="35%">
-
-<img src="./kmb-eta/src/assets/image/kmb-02.png" width="35%">&nbsp&nbsp&nbsp<img src="./kmb-eta/src/assets/image/kmb-06.png" width="35%">
-
-<img src="./kmb-eta/src/assets/image/kmb-03.png" width="35%">&nbsp&nbsp&nbsp<img src="./kmb-eta/src/assets/image/kmb-04.png" width="35%">
+<img src="./kmb-eta/src/assets/image/kmb-03.png" width="35%">               <img src="./kmb-eta/src/assets/image/kmb-04.png" width="35%">
 
 # Installing 
 
