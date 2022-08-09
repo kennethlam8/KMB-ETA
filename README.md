@@ -2,11 +2,11 @@
 
 Click to visit: 
 
-![view-01](./kmb-eta/src/assets/image/kmb-01.png)  ![view-05](./kmb-eta/src/assets/image/kmb-05.png)
+![view-01](./kmb-eta/src/assets/image/kmb-01.png | width=50)  ![view-05](./kmb-eta/src/assets/image/kmb-05.png | width=50)
 
-![view-02](./kmb-eta/src/assets/image/kmb-02.png)  ![view-06](./kmb-eta/src/assets/image/kmb-06.png)
+![view-02](./kmb-eta/src/assets/image/kmb-02.png | width=50)  ![view-06](./kmb-eta/src/assets/image/kmb-06.png | width=50)
 
-![view-03](./kmb-eta/src/assets/image/kmb-03.png)  ![view-04](./kmb-eta/src/assets/image/kmb-04.png)
+![view-03](./kmb-eta/src/assets/image/kmb-03.png | width=50)  ![view-04](./kmb-eta/src/assets/image/kmb-04.png | width=50)
 
 # Installing 
 
