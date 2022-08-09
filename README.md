@@ -2,7 +2,7 @@
 
 Click to visit: 
 
-![testing](image/kmb-banner.jpg)
+![testing](/image/kmb-banner.jpg)
 
 # Installing 
 
