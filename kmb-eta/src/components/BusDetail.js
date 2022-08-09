@@ -1,26 +1,22 @@
 import '../styles/BusDetail.css'
+import Map from './Map'
+import moment from 'moment';
+import loadingIcon from '../assets/icon/loading.png'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
-import Map from './Map'
-import moment from 'moment';
 import { useLoadScript } from "@react-google-maps/api";
-import loadingIcon from '../assets/icon/loading.png'
 
 
 const BusDetail = () => {
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}` || "",
-    });
-
+    const { isLoaded } = useLoadScript({ googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}` || "", });
     const navigate = useNavigate();
     let params = useParams()
 
     const [tsuenKingEta, setTsuenKingEta] = useState()
     const [tsuenKingRouteDetailById, setTsuenKingRouteDetailById] = useState()
     const [tsuenKingData, setTsuenKingData] = useState()
-
     const [isRouteShow, setIsRouteShow] = useState(false)
     const [isShowAllStops, setIsShowAllStops] = useState(false)
 
@@ -41,9 +37,6 @@ const BusDetail = () => {
             const data = await res.json()
             const tkData = Object.values(data)[3]
             const tkRouteDataById = tkData[params.id]
-
-            console.log('tk bus detail by ID :', tkRouteDataById)
-
             setTsuenKingRouteDetailById(tkRouteDataById)
         } catch (error) {
             console.log(error)
@@ -95,7 +88,6 @@ const BusDetail = () => {
 
     if (!isLoaded) {
         return (
-
             <div className='loading-image-container'>
                 <img src={loadingIcon} alt="loading" className='loading-image' />
             </div>
@@ -137,12 +129,15 @@ const BusDetail = () => {
                                             隱藏路線
                                         </div>
                                     }
-
-                                    <div className='detail-button' onClick={() => setIsShowAllStops(true)}>
-                                        觀看全部
-                                    </div>
+                                    {!isShowAllStops
+                                        ? <div className='detail-button' onClick={() => setIsShowAllStops(true)}>
+                                            觀看全部
+                                        </div>
+                                        : <div className='detail-button' onClick={() => setIsShowAllStops(false)}>
+                                            目前位置
+                                        </div>
+                                    }
                                 </div>
-
                             </div>
                             <div>
                                 <div className='location'>{tsuenKingData.name_tc}</div>
@@ -155,9 +150,7 @@ const BusDetail = () => {
                                                         {busEtaFormat(routeData.eta)}
                                                     </div>
                                                 </div>
-
                                                 <div className='eta-min'>分鐘<span className='eta-rmk'>{routeData.rmk_tc}</span></div>
-
                                             </div>
                                         )
                                     }

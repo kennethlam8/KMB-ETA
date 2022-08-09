@@ -1,29 +1,25 @@
-import { useState, useEffect } from 'react';
 import '../styles/Map.css'
+import { useState, useEffect } from 'react';
 import { GoogleMap, MarkerF, DirectionsRenderer } from '@react-google-maps/api'
 import currentStop from '../assets/icon/bus-stop-pointer.png'
 import otherStop from '../assets/icon/bus-stop-grey-pointer.png'
 
-
 const Map = ({ isCwkMarker, tkLatLng, cwkLatLng, stopId, route, direction, service, busStopName, isRouteShow, isShowAllStops }) => {
 
     const google = window.google;
-
     const [directions, setDirections] = useState(null)
     const directionsService = new google.maps.DirectionsService()
 
-    const center = () => isCwkMarker === false ? tkLatLng : cwkLatLng
+    const [zoom, setZoom] = useState(18)
     const position = [tkLatLng, cwkLatLng]
+    const center = () => isCwkMarker === false ? tkLatLng : cwkLatLng
+    const toggleShowAll = (showStop) => (showStop == true) ? setZoom(12) : setZoom(18)
 
-    const [isMapRouteShow, setIsMapRouteShow] = useState(false)
-
-
-    console.log('isRouteShow:', isRouteShow)
-    console.log('directions:', directions)
 
     useEffect(() => {
         getBusRoute()
-    }, [isRouteShow])
+        toggleShowAll(isShowAllStops)
+    }, [isRouteShow, isShowAllStops])
 
 
     const getBusRoute = async () => {
@@ -40,7 +36,6 @@ const Map = ({ isCwkMarker, tkLatLng, cwkLatLng, stopId, route, direction, servi
             }
         }
 
-
         let finalDestinationRes = await fetch(`https://data.etabus.gov.hk/v1/transport/kmb/stop/${busRoute.data[busRoute.data.length - 1].stop}`)
         let lastBusStop = await finalDestinationRes.json();
         routeStopArray.push({ lat: parseFloat(lastBusStop.data.lat), lng: parseFloat(lastBusStop.data.long) })
@@ -54,13 +49,14 @@ const Map = ({ isCwkMarker, tkLatLng, cwkLatLng, stopId, route, direction, servi
                 return { location: new google.maps.LatLng(point.lat, point.lng) }
             })
         })
+
         setDirections(busRouteResult)
     }
 
     return (
 
         <GoogleMap
-            zoom={18}
+            zoom={zoom}
             center={center()}
             mapContainerClassName="map-container"
             options={{
@@ -103,7 +99,8 @@ const Map = ({ isCwkMarker, tkLatLng, cwkLatLng, stopId, route, direction, servi
                 }}
             />
 
-            {directions && isRouteShow ?
+            {directions && isRouteShow
+                ?
                 (
                     <DirectionsRenderer
                         directions={directions}

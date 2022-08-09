@@ -17,7 +17,6 @@ function Contact() {
                             <img src={kmbIcon} width='90%' style={{ marginRight: '10px' }} />
                         </div>
                     </div>
-
                     <div className='contact-info'>
                         <div>
                             <img src={userIcon} width='60%' />
@@ -40,9 +39,7 @@ function Contact() {
                             https://github.com/kennethlam8
                         </a>
                     </div>
-
                 </div>
-
                 <div>
                     <a href={'/'} className='contact-redirect-btn'>
                         <a className="contact-redirect-home">返回主頁</a>

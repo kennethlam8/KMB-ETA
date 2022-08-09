@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/Header.css';
 import infoIcon from '../assets/icon/info.png'
 import { Link } from 'react-router-dom';
@@ -15,7 +14,6 @@ function Header() {
                         <img src={infoIcon} width='70%' />
                     </Link>
                 </div>
-
             </div>
         </>
     )

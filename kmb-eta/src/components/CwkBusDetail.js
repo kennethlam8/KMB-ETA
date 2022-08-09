@@ -1,31 +1,31 @@
 import '../styles/CwkBusDetail.css'
+import Map from './Map'
+import moment from 'moment';
+import loadingIcon from '../assets/icon/loading.png'
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useParams, useNavigate } from 'react-router-dom'
-import Map from './Map'
-import moment from 'moment';
 import { useLoadScript } from "@react-google-maps/api";
-import loadingIcon from '../assets/icon/loading.png'
 
 
 const CwkBusDetail = () => {
-    const { isLoaded } = useLoadScript({
-        googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}` || "",
-    });
-
+    const { isLoaded } = useLoadScript({ googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}` || "", });
     const navigate = useNavigate();
     let params = useParams()
 
     const [chaiWanKokEta, setChaiWanKokEta] = useState()
     const [chaiWanKokRouteDetailById, setChaiWanKokRouteDetailById] = useState()
     const [chaiWanKokData, setChaiWanKokData] = useState()
+    const [isRouteShow, setIsRouteShow] = useState(false)
+    const [isShowAllStops, setIsShowAllStops] = useState(false)
 
     useEffect(() => {
         getChaiWanKokRouteData()
         getChaiWanKokData()
 
     }, [])
+
 
     useEffect(() => {
         getChaiWanKokEta()
@@ -88,6 +88,7 @@ const CwkBusDetail = () => {
             </div>
         )
     }
+
     if (!isLoaded) {
         return (
 
@@ -106,7 +107,6 @@ const CwkBusDetail = () => {
                             <div className='detail-header-content'>
                                 {chaiWanKokRouteDetailById.route} 往 {chaiWanKokRouteDetailById.dest_tc}
                             </div>
-
                         </div>
                         <FontAwesomeIcon icon={faAngleLeft} className='previous-icon' onClick={() => navigate(-1)} />
                         <div>
@@ -119,7 +119,29 @@ const CwkBusDetail = () => {
                                     direction={chaiWanKokRouteDetailById.dir}
                                     service={chaiWanKokRouteDetailById.service_type}
                                     busStopName={chaiWanKokData.name_tc}
+                                    isRouteShow={isRouteShow}
+                                    isShowAllStops={isShowAllStops}
                                 />
+                            </div>
+                            <div className='detail-button-container'>
+                                <div className='detail-button-box'>
+                                    {!isRouteShow
+                                        ? <div className='detail-button' onClick={() => setIsRouteShow(true)}>
+                                            顯示路線
+                                        </div>
+                                        : <div className='detail-button' onClick={() => setIsRouteShow(false)}>
+                                            隱藏路線
+                                        </div>
+                                    }
+                                    {!isShowAllStops
+                                        ? <div className='detail-button' onClick={() => setIsShowAllStops(true)}>
+                                            觀看全部
+                                        </div>
+                                        : <div className='detail-button' onClick={() => setIsShowAllStops(false)}>
+                                            目前位置
+                                        </div>
+                                    }
+                                </div>
                             </div>
                             <div>
                                 <div className='location'>{chaiWanKokData.name_tc}</div>

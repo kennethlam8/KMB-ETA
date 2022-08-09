@@ -1,7 +1,6 @@
 import Home from './components/Home';
 import Error from './components/Error';
-import './styles/App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import BusDetail from './components/BusDetail';
 import CwkBusDetail from './components/CwkBusDetail';
 import Contact from './components/Contact';
