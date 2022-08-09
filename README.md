@@ -1,6 +1,6 @@
 # Getting started
 
-#### Click to visit: 
+#### Click to visit: https://startling-kitten-6d3073.netlify.app/
 <br/>
 <br/>
 
@@ -80,6 +80,14 @@ $ npm start
 
 ```
 http://localhost:3000
+```
+
+<br/>
+
+#### Visit directly:
+
+```
+https://startling-kitten-6d3073.netlify.app/
 ```
 
 <br/>
