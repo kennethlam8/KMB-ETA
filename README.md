@@ -8,12 +8,12 @@ Click to visit:
 
 ![view-03](./kmb-eta/src/assets/image/kmb-03.png)  ![view-04](./kmb-eta/src/assets/image/kmb-04.png) -->
 
-<img src="./kmb-eta/src/assets/image/kmb-01.png" width="75">
-<img src="./kmb-eta/src/assets/image/kmb-05.png" width="75">
-<img src="./kmb-eta/src/assets/image/kmb-02.png" width="75">
-<img src="./kmb-eta/src/assets/image/kmb-06.png" width="75">
-<img src="./kmb-eta/src/assets/image/kmb-03.png" width="75">
-<img src="./kmb-eta/src/assets/image/kmb-04.png" width="75">
+<img src="./kmb-eta/src/assets/image/kmb-01.png" width="80%">
+<img src="./kmb-eta/src/assets/image/kmb-05.png" width="80%">
+<img src="./kmb-eta/src/assets/image/kmb-02.png" width="80%">
+<img src="./kmb-eta/src/assets/image/kmb-06.png" width="80%">
+<img src="./kmb-eta/src/assets/image/kmb-03.png" width="80%">
+<img src="./kmb-eta/src/assets/image/kmb-04.png" width="80%">
 
 # Installing 
 
