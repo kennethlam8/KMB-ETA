@@ -113,36 +113,30 @@ The bus stop ID are :
 
 ### @react-google-maps/api:  
 Import Google Map
-<br/>
 User friendly, popular and comprehensive. The package is frequently maintained. 
 <br/>
 
 ### react-simple-pull-to-refresh:  
 Pull down to refresh  
-<br/>
 Simulate the mobile gesture, increase user experience while refresh.
 <br/>
 
 ### react-loading-icons:
 To add loading icon  
-<br/>
 Can import the loading icon directly with animation.
 <br/>
 
 ### @fortawesome/react-fontawesome:
 To add some useful icons  
-<br/>
 It provides numerous of icons, reduce the time of development. 
 <br/>
 
 ### react-router-dom:
 Navigate between pages  
-<br/>
 Friendly to use, popular among developers and the package is frequently maintained.
 <br/>
 
 ### moment:
 Format the time for ETA
-<br/>
 Popular package to handle date and time, clean code and useful.
 <br/>
