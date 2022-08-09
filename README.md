@@ -5,7 +5,7 @@
 <br/>
 
 ### Screenshots:
-#### You can choose the bus stop by clicking the dropdown button:
+You can choose the bus stop by clicking the dropdown button:
 <br/>
 (default 荃景圍天橋 and 荃灣柴灣角街)
 <br/>
