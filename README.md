@@ -97,6 +97,8 @@ https://startling-kitten-6d3073.netlify.app/
 ### Data source:
 https://data.gov.hk/tc-data/dataset/hk-td-tis_21-etakmb
 <br/>
+To get the real time data of bus stops, bus routes and ETA. 
+<br/>
 
 ### Bus stops:
 For simplicity, the bus stops are base on two locations (荃景圍天橋 and 荃灣柴灣角街).
@@ -107,6 +109,9 @@ The bus stop ID are :
 <br/>
 荃灣柴灣角街: "5FB1FCAF80F3D97D"
 <br/>
+
+### Special feature
+Assume the user that works nearby, for increase the user experience there are tiny difference with the official KMB application.
 <br/>
 
 # Choice of solutions
