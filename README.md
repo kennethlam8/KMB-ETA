@@ -34,7 +34,7 @@ If there is any problem please do not hesitate to contact me:
 <br/>
 <img src="./kmb-eta/src/assets/image/kmb-04.png" width="35%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./kmb-eta/src/assets/image/kmb-07.png" width="35%">
 <br/>
-<img src="./kmb-eta/src/assets/image/kmb-03.png" width="35%">
+<img src="./kmb-eta/src/assets/image/kmb-08.png" width="35%">
 <br/>
 
 # Installation
