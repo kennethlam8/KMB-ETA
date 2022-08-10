@@ -51,6 +51,13 @@ REACT_APP_GOOGLE_MAPS_API_KEY=your_api_key_here
 ```
 <br/>
 
+#### List to check and enter the directory:
+
+```
+$ ls
+$ cd kmb-eta
+```
+
 #### In the directory, you need to install the packages by running:
 
 ```
